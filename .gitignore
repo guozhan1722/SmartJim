@@ -92,3 +92,6 @@ modules/MMM-GooglePhotos/token.json
 modules/MMM-Screencast/node_modules/
 modules/MMM-Screencast/package-lock.json
 
+#ignore MMM-DailyBibleVerse build changes
+modules/MMM-DailyBibleVerse/node_modules/
+modules/MMM-DailyBibleVerse/package-lock.json
