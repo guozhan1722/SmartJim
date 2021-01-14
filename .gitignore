@@ -85,4 +85,6 @@ Temporary Items
 modules/MMM-GooglePhotos/package.json
 modules/MMM-GooglePhotos/node_modules/
 modules/MMM-GooglePhotos/package-lock.json
+modules/MMM-GooglePhotos/credentials.json
+modules/MMM-GooglePhotos/token.json
 

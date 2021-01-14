@@ -117,7 +117,7 @@ var config = {
 		{	
 	  		module: "MMM-GooglePhotos",
 			position: "fullscreen_below",
-			classes: 'jim xueyan su jonathon',
+			classes: 'default everyone',
 			//classes: ['jim','jonathon'],
 			config: {
 				albums: ["Family_2020",], // Set your album name. like ["My wedding", "family share", "Travle to Paris"]
@@ -135,14 +135,16 @@ var config = {
 					maxWHRatio: null,
 					// WHRatio = Width/Height ratio ( ==1 : Squared Photo,   < 1 : Portraited Photo, > 1 : Landscaped Photo)
 				},
-				showWidth: 1080, // These values will be used for quality of downloaded photos to show. real size to show in your MagicMirror region is recommended.
-				showHeight: 1920,
+				//showWidth: 1080, // These values will be used for quality of downloaded photos to show. real size to show in your MagicMirror region is recommended.
+				//showHeight: 1920,
+				showWidth: 640, // These values will be used for quality of downloaded photos to show. real size to show in your MagicMirror region is recommended.
+				showHeight: 1080,
 				timeFormat: "YYYY/MM/DD HH:mm", // Or `relative` can be used.
 			}
 		},
 		{
 			module: 'MMM-Screencast',
-			position: 'center', // This position is for a hidden <div /> and not the screencast window
+			position: 'top_center', // This position is for a hidden <div /> and not the screencast window
 			config: {
 				position: 'center',
 				height: 300,
