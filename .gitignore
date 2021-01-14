@@ -95,3 +95,8 @@ modules/MMM-Screencast/package-lock.json
 #ignore MMM-DailyBibleVerse build changes
 modules/MMM-DailyBibleVerse/node_modules/
 modules/MMM-DailyBibleVerse/package-lock.json
+
+#ignore MMM-Remote-Control build changes
+modules/MMM-Remote-Control/node_modules/
+modules/MMM-Remote-Control/package-lock.json
+
