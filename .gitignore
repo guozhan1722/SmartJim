@@ -80,3 +80,9 @@ Temporary Items
 *.orig
 *.rej
 *.bak
+
+## ignor MMM-GooglePhotos build changes
+modules/MMM-GooglePhotos/package.json
+modules/MMM-GooglePhotos/node_modules/
+modules/MMM-GooglePhotos/package-lock.json
+
