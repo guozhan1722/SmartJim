@@ -1,129 +1,82 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
+# Various Node ignoramuses.
+logs
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+npm-debug.log*
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.lock-wscript
+build/Release
+/node_modules/**/*
+fonts/node_modules/**/*
+vendor/node_modules/**/*
+!/tests/node_modules/**/*
+jspm_modules
+.npm
+.node_repl_history
+.nyc_output/
 
-# Flask stuff:
-instance/
-.webassets-cache
+# Visual Studio Code ignoramuses.
+.vscode/
 
-# Scrapy stuff:
-.scrapy
+# IDE Code ignoramuses.
+.idea/
 
-# Sphinx documentation
-docs/_build/
+# Various Windows ignoramuses.
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
 
-# PyBuilder
-target/
+# Various OSX ignoramuses.
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Various Linux ignoramuses.
+.fuse_hidden*
+.directory
+.Trash-*
 
-# IPython
-profile_default/
-ipython_config.py
+# Ignore all modules except the default modules.
+/modules/**
+!/modules/default
+!/modules/default/**
+!/modules/README.md**
 
-# pyenv
-.python-version
+# Ignore changes to the custom css files.
+/css/custom.css
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+# Ignore users config file but keep the sample.
+/config/*
+!/config/config.js.sample
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
+# Vim
+## swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+## diff patch
+*.orig
+*.rej
+*.bak
