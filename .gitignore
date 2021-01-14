@@ -99,4 +99,4 @@ modules/MMM-DailyBibleVerse/package-lock.json
 #ignore MMM-Remote-Control build changes
 modules/MMM-Remote-Control/node_modules/
 modules/MMM-Remote-Control/package-lock.json
-
+modules/MMM-Remote-Control/settings.json
