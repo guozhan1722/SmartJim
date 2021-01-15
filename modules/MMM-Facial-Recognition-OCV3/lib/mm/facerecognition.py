@@ -54,17 +54,66 @@ def shutdown(self, signum):
 
 signal.signal(signal.SIGINT, shutdown)
 
+def diffImage(newImage, oldImage):
+    if newImage is None:
+        return 0
+    if oldImage is None:
+        return 0
+    newgray = cv2.cvtColor(newImage,cv2.COLOR_RGB2GRAY)
+    newgray = cv2.GaussianBlur(newgray, (21, 21), 0)
+    
+    oldgray = cv2.cvtColor(oldImage,cv2.COLOR_RGB2GRAY)
+    oldgray = cv2.GaussianBlur(oldgray, (21, 21), 0)
+    
+    diff = cv2.absdiff(oldgray,newgray)
+    thresh = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)[1]
+
+    # dilate the thresholded image to fill in holes, then find contours
+    # on thresholded image
+    thresh = cv2.dilate(thresh, None, iterations=2)
+    (_,cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+                                    cv2.CHAIN_APPROX_SIMPLE)
+    max = 0
+    # loop over the contours
+    for c in cnts:
+        area = cv2.contourArea(c)
+        if area > max:
+            max = area
+    return max
+    
 # sleep for a second to let the camera warm up
 time.sleep(1)
 
 face = MMConfig.getFaceDetection()
 
+OldImage = None
+PoweredOff = False
+LastMontion = time.time()
 # Main Loop
 while True:
     # Sleep for x seconds specified in module config
     time.sleep(MMConfig.getInterval())
     # if detecion is true, will be used to disable detection if you use a PIR sensor and no motion is detected
     if detection_active is True:
+        # Get image
+        image = camera.read()
+        
+        #motion dection 
+        score = diffImage(image, OldImage)
+        OldImage = image
+        #debug purpose MMConfig.toNode("score", {"score": str(score)})
+        if (score > 1000):
+            if PoweredOff is True:
+                MMConfig.toNode("active", {})
+                PoweredOff = False
+            LastMontion = time.time()
+        else:
+            stillTime = time.time() - LastMontion
+            if(stillTime > 60 and PoweredOff != True):
+                MMConfig.toNode("deactive",{})
+                PoweredOff = True
+                continue
+        
         # Get image
         image = camera.read()
         # Convert image to grayscale.

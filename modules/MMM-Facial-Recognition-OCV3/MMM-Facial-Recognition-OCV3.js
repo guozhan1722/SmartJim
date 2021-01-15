@@ -84,6 +84,60 @@ Module.register('MMM-Facial-Recognition-OCV3',{
 		this.sendNotification("CURRENT_USER", "None");
 	},
 
+	log: function (msg) {
+		console.log("[" + this.name + "] " + msg);
+	  },
+	
+	/**
+   *
+   */
+  activateMonitor: function () {
+    this.isMonitorOn(function (result) {
+      if (!result) {
+        exec("caffeinate -u -t 1", function (err, out, code) {
+          if (err) {
+            self.log(" error activating monitor: " + code);
+          } else {
+            self.log(" monitor has been activated.");
+          }
+        });
+      }
+    });
+  },
+
+  /**
+   *
+   */
+  deactivateMonitor: function () {
+    this.isMonitorOn(function (result) {
+      if (result) {
+        exec("pmset displaysleepnow", function (err, out, code) {
+          if (err) {
+            self.log(" error deactivating monitor: " + code);
+          } else {
+            self.log("monitor has been deactivated.");
+          }
+        });
+      }
+    });
+  },
+
+  /**
+   *
+   * @param resultCallback
+   */
+  isMonitorOn: function (resultCallback) {
+    exec("pmset -g powerstate IODisplayWrangler | tail -1 | cut -c29", function (err, out, code) {
+      if (err) {
+        self.log( " error calling monitor status: " + code);
+        return;
+      }
+
+      self.log("monitor status is " + out);
+      resultCallback(out.includes("4"));
+    });
+  },
+
 	// Override socket notification handler.
 	socketNotificationReceived: function(notification, payload) {
 		if (payload.action == "login"){
@@ -108,7 +162,17 @@ Module.register('MMM-Facial-Recognition-OCV3',{
 			this.logout_user()
 			this.current_user = null;
 		}
-	},
+		else if (payload.action == "active") {
+			//this.activateMonitor();
+			exec("caffeinate -u -t 1", null);
+			this.log("monitor has been activated.");
+		}
+		else if (payload.action == "deactive") {
+			//this.deactivateMonitor();
+			exec("pmset displaysleepnow", null);
+			this.log("monitor has been Deactivated.");
+		}
+	 },
 
 	notificationReceived: function(notification, payload, sender) {
 		if (notification === 'DOM_OBJECTS_CREATED') {
@@ -123,7 +187,11 @@ Module.register('MMM-Facial-Recognition-OCV3',{
 
 	start: function() {
 		this.current_user = null;
+	    // make sure that the monitor is on when starting
+    	this.sendSocketNotification("ACTIVATE_MONITOR",this.config);
+		
 		this.sendSocketNotification('CONFIG', this.config);
+
 		Log.info('Starting module: ' + this.name);
 	}
 

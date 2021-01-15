@@ -87,6 +87,7 @@ modules/MMM-GooglePhotos/node_modules/
 modules/MMM-GooglePhotos/package-lock.json
 modules/MMM-GooglePhotos/credentials.json
 modules/MMM-GooglePhotos/token.json
+modules/MMM-GooglePhotos/cache/
 
 #ignor MMM-Screencast build changes
 modules/MMM-Screencast/node_modules/
