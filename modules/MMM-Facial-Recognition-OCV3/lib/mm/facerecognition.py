@@ -71,7 +71,7 @@ def diffImage(newImage, oldImage):
     # dilate the thresholded image to fill in holes, then find contours
     # on thresholded image
     thresh = cv2.dilate(thresh, None, iterations=2)
-    (_,cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+    (cnts, _) = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
                                     cv2.CHAIN_APPROX_SIMPLE)
     max = 0
     # loop over the contours
@@ -112,6 +112,9 @@ while True:
             if(stillTime > 60 and PoweredOff != True):
                 MMConfig.toNode("deactive",{})
                 PoweredOff = True
+                MMConfig.toNode("logout", {"user": current_user})
+                same_user_detected_in_row = 0
+                current_user = None
                 continue
         
         # Get image
@@ -135,6 +138,8 @@ while True:
         crop = face.crop(image, x, y, w, h,int(MMConfig.getFaceFactor() * w))
         # Test face against model.
         label, confidence = model.predict(crop)
+        #debug purpose
+        #MMConfig.toNode("score", {"score": str(label)})
         # We have a match if the label is not "-1" which equals unknown because of exceeded threshold and is not "0" which are negtive training images (see training folder).
         if (label != -1 and label != 0):
             # Set login time

@@ -14,6 +14,8 @@ import sys
 import re
 
 import cv2
+from cv2 import CascadeClassifier
+
 sys.path.append((os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))+ '/common/'))
 
 from lib.tools.config import ToolsConfig
@@ -30,31 +32,34 @@ class ToolsCapture:
         toolsConfig = ToolsConfig(self.captureName)
         camera = toolsConfig.getCamera()
         print('Capturing positive training images.')
-        print('Press enter to capture an image.')
+        print('Press q to capture an image.')
         print('Press Ctrl-C to quit.')
         while True:
             try:
-                input()
-                print('Capturing image...')
                 image = camera.read()
-                # Convert image to grayscale.
-                image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-                # Get coordinates of single face in captured image.
-                result = self.face.detect_single(image)
-                if result is None:
-                    print('Could not detect single face!'
-                          + ' Check the image in capture.pgm'
-                          + ' to see what was captured and try'
-                          + ' again with only one face visible.')
-                    continue
-                x, y, w, h = result
-                # Crop image as close as possible to desired face aspect ratio.
-                # Might be smaller if face is near edge of image.
-                crop = self.face.crop(image, x, y, w, h,int(ToolsConfig.getFaceFactor() * w))
-                # Save image to file.
-                filename, count = toolsConfig.getNewCaptureFile()
-                cv2.imwrite(filename, crop)
-                print('Found face and wrote training image', filename)
+                cv2.imshow('Capturing',image)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    print('Capturing image...')
+                    # Convert image to grayscale.
+                    image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+                    # Get coordinates of single face in captured image.
+                    result = self.face.detect_single(image)
+                    if result is None:
+                        print('Could not detect single face!'
+                              + ' Check the image in capture.pgm'
+                              + ' to see what was captured and try'
+                              + ' again with only one face visible.')
+                        continue
+                    x, y, w, h = result
+                    # Crop image as close as possible to desired face aspect ratio.
+                    # Might be smaller if face is near edge of image.
+                    crop = self.face.crop(image, x, y, w, h,int(ToolsConfig.getFaceFactor() * w))
+                    # Save image to file.
+                    filename, count = toolsConfig.getNewCaptureFile()
+                    cv2.imwrite(filename, crop)
+                    print('Found face and wrote training image', filename)
+                    break
             except KeyboardInterrupt:
                 camera.stop()
                 break

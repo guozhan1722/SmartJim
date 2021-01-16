@@ -117,8 +117,7 @@ var config = {
 		{	
 	  		module: "MMM-GooglePhotos",
 			position: "fullscreen_below",
-			classes: 'default everyone',
-			//classes: ['jim','jonathon'],
+			classes: 'jim xueyan su jonathon',
 			config: {
 				albums: ["Family_2020",], // Set your album name. like ["My wedding", "family share", "Travle to Paris"]
 				updateInterval: 1000 * 20, // minimum 10 seconds.
@@ -204,7 +203,7 @@ var config = {
 				// force the use of a usb webcam on raspberry pi (on other platforms this is always true automatically)
 				useUSBCam: true,
 				// Path to your training xml
-				trainingFile: '/Users/jim/MagicMirror/modules/MMM-Facial-Recognition-OCV3/training.xml',
+				trainingFile: '/home/jim/SmartJim/modules/MMM-Facial-Recognition-OCV3/training.xml',
 				// recognition intervall in seconds (smaller number = faster but CPU intens!)
 				interval: 2,
 				// Logout delay after last recognition so that a user does not get instantly logged out if he turns away from the mirror for a few seconds

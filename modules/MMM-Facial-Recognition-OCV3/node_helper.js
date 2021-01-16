@@ -28,12 +28,18 @@ module.exports = NodeHelper.create({
       }
       if (message.hasOwnProperty('active')){
         console.log("[" + self.name + "] " + "Monitor active " );
-        exec("caffeinate -u -t 1", null);
+	// for imac        
+	//exec("caffeinate -u -t 1", null);
+        // for Ubuntu
+	exec("xset dpms force on", null);
         //self.sendSocketNotification("ACTIVATE_MONITOR", {action: "active"});
       }
       if (message.hasOwnProperty('deactive')){
         console.log("[" + self.name + "] " + "Monitor Deactive ");
-        exec("pmset displaysleepnow", null);
+	// for imac        
+	//exec("pmset displaysleepnow", null);
+	// for Ubuntu        
+	exec("xset dpms force off", null);
         //self.sendSocketNotification("DEACTIVATE_MONITOR", {action: "deactive"});
       }
       if (message.hasOwnProperty('score')){

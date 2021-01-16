@@ -38,7 +38,7 @@ class CommonConfig:
         
     @classmethod
     def isCV3(cls):
-        if cls.CV_MAJOR_VER == '3':
+        if cls.CV_MAJOR_VER == '3' or cls.CV_MAJOR_VER == '4' :
             return True
         else:
             return False

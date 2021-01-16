@@ -101,3 +101,20 @@ modules/MMM-DailyBibleVerse/package-lock.json
 modules/MMM-Remote-Control/node_modules/
 modules/MMM-Remote-Control/package-lock.json
 modules/MMM-Remote-Control/settings.json
+modules/MMM-Remote-Control/modules.json
+
+#ignore MMM_Facial-Recognition build changes
+modules/MMM-Facial-Recognition-OCV3/lib/common/face.pyc
+modules/MMM-Facial-Recognition-OCV3/node_modules/
+modules/MMM-Facial-Recognition-OCV3/package-lock.json
+modules/MMM-Facial-Recognition-OCV3/lib/__init__.pyc
+modules/MMM-Facial-Recognition-OCV3/lib/__pycache__/
+modules/MMM-Facial-Recognition-OCV3/lib/common/__pycache__/
+modules/MMM-Facial-Recognition-OCV3/lib/mm/__pycache__/
+modules/MMM-Facial-Recognition-OCV3/lib/tools/__init__.pyc
+modules/MMM-Facial-Recognition-OCV3/lib/tools/__pycache__/
+modules/MMM-Facial-Recognition-OCV3/lib/tools/train.pyc
+modules/MMM-Facial-Recognition-OCV3/training.xml
+modules/MMM-Facial-Recognition-OCV3/training_data/
+
+
